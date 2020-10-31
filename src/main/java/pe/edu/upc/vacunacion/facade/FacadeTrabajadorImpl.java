@@ -13,7 +13,7 @@ import pe.edu.upc.vacunacion.servicios.ServicioProducto;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/producto")
+@RequestMapping("/api/Trabajador")
 public class FacadeTrabajadorImpl implements FacadeTrabajador {
 
     @Autowired
