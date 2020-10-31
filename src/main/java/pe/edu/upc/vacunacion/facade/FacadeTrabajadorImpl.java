@@ -1,6 +1,8 @@
 package pe.edu.upc.vacunacion.facade;
 
 import javassist.NotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ public class FacadeTrabajadorImpl implements FacadeTrabajador {
     @Autowired
     private ServicioProducto servicioProducto;
 
+    private static Logger LOGGER = LogManager.getLogger(FacadeTrabajadorImpl.class);
+
     @Override
     @PostMapping
     public Trabajador crearTrabajador(@RequestBody Trabajador trabajador) {
@@ -29,8 +33,10 @@ public class FacadeTrabajadorImpl implements FacadeTrabajador {
         try {
             return servicioProducto.actualizarTrabajador(trabajador);
         } catch (NotFoundException e){
+            LOGGER.error(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }catch (Exception e){
+            LOGGER.error(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al intentar actualizar trabajador:( ");
         }
     }
@@ -41,8 +47,10 @@ public class FacadeTrabajadorImpl implements FacadeTrabajador {
         try{
             return servicioProducto.borrarTrabajador(codigo);
         } catch (NotFoundException e){
+            LOGGER.error(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }catch (Exception e){
+            LOGGER.error(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al intentar borrar trabajador :( ");
         }
     }
@@ -59,8 +67,10 @@ public class FacadeTrabajadorImpl implements FacadeTrabajador {
         try {
             return servicioProducto.obtenerTrabajador(codigo);
         } catch (NotFoundException e){
+            LOGGER.error(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }catch (Exception e){
+            LOGGER.error(e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al intentar obtener trabajador :( ");
         }
     }
