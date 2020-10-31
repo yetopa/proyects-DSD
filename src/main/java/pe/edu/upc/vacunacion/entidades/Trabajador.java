@@ -1,11 +1,11 @@
 package pe.edu.upc.vacunacion.entidades;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,17 +17,16 @@ public class Trabajador implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
 
-    @NotNull
+    @NotBlank(message = "El Nombre no puede ser vacio")
     private String  nombre;
-    @NotNull
+    @NotBlank(message = "El Apellido Paterno no puede ser vacio")
     private String  apellidoPaterno;
-    @NotNull
+    @NotBlank(message = "El Apellido Materno no puede ser vacio")
     private String  apellifoMaterno;
-    @NotNull
+    @NotBlank(message = "El DNI no puede ser vacio")
     private String  dni;
-    @NotNull
+    @NotNull(message = "La Fecha de Nacimiento no puede ser vacio")
     private Date    fechaNacimiento;
-    @NotNull
     private char    sexo;
     private String  cargo;
     private BigDecimal sueldo;

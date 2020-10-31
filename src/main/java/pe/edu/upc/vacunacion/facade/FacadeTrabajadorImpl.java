@@ -23,8 +23,15 @@ public class FacadeTrabajadorImpl implements FacadeTrabajador {
 
     @Override
     @PostMapping
-    public Trabajador crearTrabajador(@RequestBody Trabajador trabajador) {
-        return servicioProducto.crearTrabajador(trabajador);
+    public Trabajador crearTrabajador(@RequestBody Trabajador trabajador) throws NotFoundException{
+        try {
+            return servicioProducto.crearTrabajador(trabajador);
+        }catch (Exception e){
+            LOGGER.error(e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al intentar registrar trabajador;" +
+                    " Campos obligatorios: nombre, apellidoPaterno, apellifoMaterno, dni, fechaNacimiento ");
+        }
+
     }
 
     @Override

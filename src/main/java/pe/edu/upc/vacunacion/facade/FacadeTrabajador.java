@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FacadeTrabajador {
 
-    Trabajador crearTrabajador(Trabajador trabajador);
+    Trabajador crearTrabajador(Trabajador trabajador) throws NotFoundException;
     Trabajador actualizarTrabajador(Trabajador trabajador)  throws NotFoundException;
     Trabajador borrarTrabajador(Long codigo) throws NotFoundException;
     List<Trabajador> obtenerTrabajadores();

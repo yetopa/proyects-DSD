@@ -17,7 +17,7 @@ public class ServiceProductoImpl implements ServicioProducto {
     private RepositorioTrabajador repositorioTrabajador;
 
     @Override
-    public Trabajador crearTrabajador(Trabajador trabajador) {
+    public Trabajador crearTrabajador(Trabajador trabajador) throws Exception {
         trabajador.setActivo(true);
         return repositorioTrabajador.save(trabajador);
     }
